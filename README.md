@@ -3,7 +3,7 @@ testkata
 
 **Materials for ScataTest on Test Kata (http://test.kata.org.pl)**
 
-You will this:
+You will need this:
 * git
 * jdk 1.7 hot spot
 * maven 3
