@@ -1,6 +1,8 @@
 package org.kata.test
 
-import org.scalatest.FunSuite
+import Car._
+import org.scalatest.{BeforeAndAfter, FunSuite}
+import org.kata.test.Car.Car
 
 /**
  * @author Oskar Kapala <oskar.kapala@outbox.pl>
@@ -12,17 +14,30 @@ import org.scalatest.FunSuite
  *         and generates specification-like output that can facilitate communication among stakeholders.
  *
  */
-//step-2-3
-class CarFunSuite extends FunSuite {
+// step-2-4
+class CarFunSuite extends FunSuite with BeforeAndAfter {
+
+  val car: Car = basicCar;
+  var state: CarState = (1, 1);
+
+  before {
+    state = car.startEngine
+  }
 
   test("car speed should be zero at the beginning") {
-    val car = Car.basicCar
-    val state = car.startEngine
-
     assert(state._2 === 0)
   }
 
-  test("car speed should be grater equal then zero all the time")(pending)
+  test("car speed should be grater equal then zero all the time") {
+    assert(state._2 >= 0)
 
-  test("car heading should not change on turn when car speed is zero")(pending)
+    state = car.break(state)
+    assert(state._2 >= 0)
+
+  }
+
+  test("car heading should not change on turn when car speed is zero") {
+    state = car.turnLeft(state)
+    assert(state._1 === 0)
+  }
 }
