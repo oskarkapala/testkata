@@ -1,31 +1,23 @@
 package org.kata.test
 
-import collection.mutable.Stack
 import org.scalatest._
-import org.junit.Test
 import java.lang.String
 
 /**
  * @author Oskar Kapala <oskar.kapala@outbox.pl>
  *
  */
-
-class SmokeSuite extends Assertions {
-
-  @Test
-  def someSmoke() {
-
-    assert(1 === 1)
-
-  }
-
-}
-
 class SmokeFunSuite extends FunSuite {
 
   test("some smoke") {
     assert(1 === 1)
 
+  }
+
+  test("smokie teset") {
+    val smokie = new Smokie()
+
+    assert(smokie.getSmokeColor === "Grey")
   }
 
 }
@@ -50,13 +42,12 @@ class SmokeSpec extends FlatSpec {
   }
 
   it should "throw NoSuchElementException if there is no fire" in {
-    val container : List[String] = Nil
+    val container: List[String] = Nil
     intercept[NoSuchElementException] {
       container.head
     }
   }
 }
-
 
 
 class SmokeFeatureSpec extends FeatureSpec {
