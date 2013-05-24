@@ -1,5 +1,6 @@
 package org.kata.test
 
+import Car._
 import org.scalatest._
 
 /**
@@ -13,10 +14,24 @@ import org.scalatest._
  *         provide an excellent general-purpose choice for writing specification-style tests.
  *
  */
-// step 3-1
+// step 3-2
 class CarFunSpec extends FunSpec {
+
   describe("A Car") {
-    it("should accelerate")(pending)
-    it("should break")(pending)
+
+    val car: Car = basicCar;
+
+    describe("when standing") {
+
+      val state = car.startEngine;
+
+      it("should have speed 0") {
+        assert(state._2 === 0)
+      }
+
+      it("can't change heading") {
+        assert(car.turnLeft(state)._1 === 0)
+      }
+    }
   }
 }
