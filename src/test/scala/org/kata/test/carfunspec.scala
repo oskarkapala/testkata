@@ -14,7 +14,7 @@ import org.scalatest._
  *         provide an excellent general-purpose choice for writing specification-style tests.
  *
  */
-// step 3-3
+// step 3-4
 class CarFunSpec extends FunSpec with GivenWhenThen {
 
   describe("A Premium Car") {
@@ -28,5 +28,11 @@ class CarFunSpec extends FunSpec with GivenWhenThen {
 
     Then("speed should be 50")
     assert(stateAt50._2 === 50)
+  }
+
+  describe("The combinators") {
+    they("should be easy to learn") {}
+    they("should be efficient") {}
+    they("should do something cool") {}
   }
 }
