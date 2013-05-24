@@ -15,7 +15,7 @@ Best way to check env is to clone the project and try command:
     mvn test
 
 or in IDE (IDEA)
-  1. CTR+9 for compile
+  1. CTR+F9 for compile
   2. SHIFT+ALT+F10 on class smoketests.scala and run them all
 
 Come back here for full kata's code on Friday late evening or Saturday morning :)
