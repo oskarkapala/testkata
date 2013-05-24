@@ -2,8 +2,8 @@ package org.kata.test
 
 import Car._
 
-import org.scalatest.{GivenWhenThen, FlatSpec}
-import org.scalatest.matchers.MustMatchers
+import org.scalatest.FlatSpec
+import org.scalatest.matchers.{ShouldMatchers, ClassicMatchers}
 
 /**
  * @author Oskar Kapala <oskar.kapala@outbox.pl>
@@ -16,34 +16,45 @@ import org.scalatest.matchers.MustMatchers
  *         in a specification style: “X should Y,” “A must B,” etc.
  *
  */
-// step 4-2
-class CarFlatSpec extends FlatSpec with GivenWhenThen with MustMatchers {
+// step 4-3
+class CarFlatSpec extends FlatSpec with ShouldMatchers with ClassicMatchers {
 
-  "A Car" must "be able to drive" in {}
+  "A Car" must "be able to do everything ;)" in {
 
-  it must "be able to break" in {}
-
-  it must "be able to change driving direction (heading)" in {
     val car = basicCar
-    var state = car.startEngine
+    val state = car.startEngine
 
-    Given("Driving car")
-    state = car.accelerate(state)
+    state._2 should equal(0)
 
-    When("steering wheel is turned left")
-    state = car.turnLeft(state)
 
-    Then("the heading should change")
-    assert(state._1 === 315)
+    val s: String = "Hello seven world"
+    val emptySet = Set.empty
+    val map = Map("x" -> 24, "y" -> 25)
 
-    And("speed not")
-    assert(state._2 === 10)
+
+    s should startWith("Hello")
+    s should endWith("world")
+    s should include("seven")
+
+
+    s should startWith regex ("Hel*o")
+    s should endWith regex ("wo.ld")
+    s should include regex ("wo.ld")
+
+
+    "-123.2" should fullyMatch regex ("""(-)?(\d+)(\.\d*)?""")
+
+    emptySet should be('empty)
+
+    map should have size (2)
+
+    //    assert(Array(1, 2) == (Array(1, 2)))
+    Array(1, 2) should equal(Array(1, 2))
+
+
+    //"yellow" should (equal ("blue") and equal { println("hello, world!"); "green" })
 
   }
-
-  it must "may slide when turn at high speed" in {}
-
-  it must "slide (throw SlideException) when turning on too high speed" in (pending)
 
 }
 
