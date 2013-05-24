@@ -1,5 +1,6 @@
 package org.kata.test
 
+import Car._
 import org.scalatest.{GivenWhenThen, FeatureSpec}
 
 /**
@@ -13,7 +14,7 @@ import org.scalatest.{GivenWhenThen, FeatureSpec}
  *         the process of programmers working alongside non-programmers to define the acceptance requirements.
  *
  */
-// step 5-1
+// step 5-2
 class CarFeatureSpec extends FeatureSpec with GivenWhenThen {
 
   info("As Car user")
@@ -24,16 +25,21 @@ class CarFeatureSpec extends FeatureSpec with GivenWhenThen {
   feature("accelerating") {
     scenario("User presses accelerate paddle when car is stopped") {
       Given("a Car is stopped")
+      val car = basicCar
+      val state = car.startEngine
+
       When("accelerate paddle is pressed")
+      val newstate = car accelerate state
+
       Then("the car should increase the speed")
-      pending
+      assert(newstate._2 === 10)
     }
 
-    scenario("User presses accelerate paddle when car is already driving") {
+    ignore("User presses accelerate paddle when car is already driving") {
       Given("a Car is driving with speed lower then top speed")
       When("accelerate paddle is pressed")
       Then("the car should increase the speed")
-      pending
+      assert(1 === 13)
     }
 
     scenario("User presses accelerate paddle when car is already driving at top speed") {
@@ -43,6 +49,7 @@ class CarFeatureSpec extends FeatureSpec with GivenWhenThen {
       pending
     }
 
-
   }
+
+
 }
