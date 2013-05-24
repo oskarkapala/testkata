@@ -1,8 +1,7 @@
 package org.kata.test
 
 import Car._
-import org.scalatest.{BeforeAndAfter, FunSuite}
-import org.kata.test.Car.Car
+import org.scalatest.{GivenWhenThen, BeforeAndAfter, FunSuite}
 
 /**
  * @author Oskar Kapala <oskar.kapala@outbox.pl>
@@ -14,10 +13,10 @@ import org.kata.test.Car.Car
  *         and generates specification-like output that can facilitate communication among stakeholders.
  *
  */
-// step-2-4
-class CarFunSuite extends FunSuite with BeforeAndAfter {
+//step-2-5
+class CarFunSuite extends FunSuite with BeforeAndAfter with GivenWhenThen {
 
-  val car: Car = basicCar;
+  val car = basicCar;
   var state: CarState = (1, 1);
 
   before {
@@ -39,5 +38,35 @@ class CarFunSuite extends FunSuite with BeforeAndAfter {
   test("car heading should not change on turn when car speed is zero") {
     state = car.turnLeft(state)
     assert(state._1 === 0)
+  }
+
+  test("A Car can turn when driving") {
+
+    Given("Driving car")
+    state = car.accelerate(state)
+
+    When("steering wheel is turned left")
+    state = car.turnLeft(state)
+
+    Then("the heading should change")
+    assert(state._1 === 315)
+
+    And("speed not")
+    assert(state._2 === 10)
+
+    info("That's great, it works")
+  }
+
+  test("car should slide when braking at fast speed") {
+    Given("Driving car")
+    state = car.accelerate(state)
+
+    When("steering wheel is turned left")
+    state = car accelerate (car accelerate (car accelerate (car accelerate (car accelerate (car accelerate state)))))
+
+    Then("the heading should change")
+    intercept[SlideException] {
+      car.rapidBreak(state)
+    }
   }
 }
