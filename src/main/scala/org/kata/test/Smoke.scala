@@ -6,4 +6,6 @@ package org.kata.test
  */
 class Smoke {
 
+  def getSmokeColor = "BlueGray"
+
 }

@@ -9,12 +9,13 @@ import java.lang.String
  */
 class SmokeFunSuite extends FunSuite {
 
-  test("some smoke") {
-    assert(1 === 1)
+  test("bluegray smoke") {
+    val smoke = new Smoke()
+    assert(smoke.getSmokeColor === "BlueGray")
 
   }
 
-  test("smokie teset") {
+  test("smokie test") {
     val smokie = new Smokie()
 
     assert(smokie.getSmokeColor === "Grey")
@@ -36,7 +37,8 @@ class SmokeFunSpec extends FunSpec {
 
 }
 
-class SmokeSpec extends FlatSpec {
+class SmokeFlatSpec extends FlatSpec {
+
   "A Smoke" should "go up" in {
     assert(1 === 1)
   }
