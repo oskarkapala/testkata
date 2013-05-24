@@ -14,24 +14,19 @@ import org.scalatest._
  *         provide an excellent general-purpose choice for writing specification-style tests.
  *
  */
-// step 3-2
-class CarFunSpec extends FunSpec {
+// step 3-3
+class CarFunSpec extends FunSpec with GivenWhenThen {
 
-  describe("A Car") {
+  describe("A Premium Car") {
+    val car = premiumCar;
 
-    val car: Car = basicCar;
+    Given("Stopped car")
+    val state = car.startEngine
 
-    describe("when standing") {
+    When("accelerate to 50")
+    val stateAt50 = car.accelerateTo(state, 50)
 
-      val state = car.startEngine;
-
-      it("should have speed 0") {
-        assert(state._2 === 0)
-      }
-
-      it("can't change heading") {
-        assert(car.turnLeft(state)._1 === 0)
-      }
-    }
+    Then("speed should be 50")
+    assert(stateAt50._2 === 50)
   }
 }
